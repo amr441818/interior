@@ -16,7 +16,7 @@ export const getAllUsers = async (req, res, next) => {
 export const getSingleUser = async (req, res, next) => {
   const { id: _id } = req.params;
   try {
-    const user = await userModel.findById(_id);
+    const user = await UserModel.findById(_id);
     res.json(user);
   } catch (error) {
     serverSideErrorHandling(error, next);
