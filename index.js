@@ -3,36 +3,12 @@ import mongoose from "mongoose";
 import bodyParser from "body-parser";
 // import multer from "multer";
 import dotenv from "dotenv";
-// import { v4 as uuidv4 } from "uuid";
 import cors from "cors";
 import userRoutes from "./routes/user.js";
-// import path from "path";
-// import { dirname } from "path";
-// import { fileURLToPath } from "url";
-
-// const __dirname = dirname(fileURLToPath(import.meta.url));
+import blogRoutes from "./routes/blogs.js";
 const app = express();
 dotenv.config();
 
-// const fileStorage = multer.diskStorage({
-//   destination: (req, file, cb) => {
-//     cb(null, "images");
-//   },
-//   filename: (req, file, cb) => {
-//     cb(null, uuidv4() + "-" + file.originalname);
-//   },
-// });
-// const fileFilter = (req, file, cb) => {
-//   if (
-//     file.mimetype === "image/png" ||
-//     file.mimetype === "image/jpg" ||
-//     file.mimetype === "image/jpeg"
-//   ) {
-//     cb(null, true);
-//   } else {
-//     cb(null, false);
-//   }
-// };
 app.use(express.json());
 app.use(bodyParser.json({ limit: "30mb", extended: true }));
 app.use(bodyParser.urlencoded({ limit: "30mb", extended: true }));
@@ -43,6 +19,7 @@ app.use(cors());
 //   multer({ storage: fileStorage, fileFilter: fileFilter }).single("image")
 // );
 app.use("/api", userRoutes);
+app.use("/api", blogRoutes);
 
 app.use((error, req, res, next) => {
   const message = error.message;

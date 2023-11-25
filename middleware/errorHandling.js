@@ -23,6 +23,15 @@ export const userValidations = () => {
     body("imageUrl").trim().not().isEmpty(),
   ];
 };
+export const blogValidations = () => {
+  return [
+    body("title").trim().not().isEmpty(),
+    body("category").trim().not().isEmpty(),
+    body("description").trim().not().isEmpty(),
+    body("subDescription").trim().not().isEmpty(),
+    body("imageUrl").trim().not().isEmpty(),
+  ];
+};
 export const serverSideErrorHandling = (err, next) => {
   if (!err.statusCode) {
     err.statusCode = 500;
